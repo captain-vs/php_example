@@ -85,15 +85,13 @@ $result = $conn->query('select * from products');
        
 
         <body>
-            <h1 class="text-center my-3">Hello!! <?php $_SESSION['name'] ?></h1> 
+            <h1 class="text-center my-3">Hello!! <?php echo htmlspecialchars($_SESSION['name'] ?? 'Guest'); ?></h1> 
         </body>
 
-<?php
-while ($row = $result->fetch_assoc()) {
-?>
+
 
         <div
-            class="table-responsive"
+            class="table-responsive "
         >
             <table
                 class="table table-primary"
@@ -109,6 +107,9 @@ while ($row = $result->fetch_assoc()) {
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+while ($row = $result->fetch_assoc()) {
+?>
                     <tr class="">
                         <td scope="row"> <?php echo $row['product_name'] ?></td>
                         <td> <?php echo $row['category'] ?></td>
@@ -119,10 +120,11 @@ while ($row = $result->fetch_assoc()) {
                     </tr>
                    
                 </tbody>
+                <?php } ?>
             </table>
         </div>
         
-<?php } ?>
+
 
 
         </main>

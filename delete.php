@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql = $conn->prepare("Delete from products where product_name = ?");
 
-    $sql->bind_param('i', $product);
+    $sql->bind_param('s', $product);
 
     if ($sql->execute()) {
         echo "Product deleted ";
